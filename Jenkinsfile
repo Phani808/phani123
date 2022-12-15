@@ -12,11 +12,5 @@ pipeline {
             }
         }
     }
-    stage('Build docker image'){
-            steps{
-                script{
-                    sh 'docker build -t phani997/raviLogin-1.0 .'
-                }
-            }
-        }
+   
 }
