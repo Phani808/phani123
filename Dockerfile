@@ -1,4 +1,10 @@
-FROM openjdk:8-jre
-ADD target/raviLogin-1.0.war raviLogin-1.0.war
-EXPOSE 8010
-ENTRYPOINT ["java","-war","/raviLogin-1.0.war"]
+FROM maven as build
+WORKDIR /var/lib/jenkins/workspace/DOCKER/target
+COPY . .
+RUN mvn install
+
+FROM openjdk:11.0
+WORKDIR /app
+COPY --from=build /var/lib/jenkins/workspace/DOCKER/target/raviLogin-1.0.jar /var/lib/jenkins/workspace/DOCKER/target/
+EXPOSE 8080
+CMD ["java","-jar","raviLogin-1.0.jar"]
