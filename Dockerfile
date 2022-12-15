@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
-ADD target/raviLogin-1.0.jar app.jar
-EXPOSE 8010
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
+FROM openjdk:8
+EXPOSE 8080
+ADD target/raviLogin-1.0.jar raviLogin-1.0.jar
+ENTRYPOINT ["java","-jar","/raviLogin-1.0.jar"]
